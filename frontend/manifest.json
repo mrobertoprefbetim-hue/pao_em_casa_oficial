@@ -1,0 +1,15 @@
+{
+  "name": "Pão em Casa",
+  "short_name": "PaoCasa",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#FFF2E0",
+  "theme_color": "#FF7B00",
+  "icons": [
+    {
+      "src": "https://img.icons8.com/android/48/ffffff/bread.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    }
+  ]
+}

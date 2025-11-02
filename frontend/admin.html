@@ -1,0 +1,11 @@
+<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Admin</title></head><body>
+<h1>Admin - Verificação Documentos</h1>
+<button onclick="load()">Carregar Pendentes</button>
+<div id='out'></div>
+<script>
+async function load(){ const r=await fetch('/api/admin/documents/pending'); const j=await r.json(); const o=document.getElementById('out'); o.innerHTML=''; j.users.forEach(u=> o.innerHTML += `<div>Cliente ${u.name} - <a href='${u.identity_doc_url}' target='_blank'>doc</a> <button onclick="verify('user','${u.id}','verified')">ok</button> <button onclick="verify('user','${u.id}','rejected')">rej</button></div>`);
+ j.riders.forEach(r=> o.innerHTML += `<div>Motoboy ${r.user_id} - CNH: <a href='${r.cnh_front_url}' target='_blank'>frente</a> <button onclick="verify('rider','${r.id}','verified')">ok</button> <button onclick="verify('rider','${r.id}','rejected')">rej</button></div>`);
+}
+async function verify(target,id,status){ const note=prompt('obs'); await fetch('/api/admin/documents/verify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({target,id,status,note,admin_id:'admin_demo'})}); alert('feito'); load(); }
+</script>
+</body></html>

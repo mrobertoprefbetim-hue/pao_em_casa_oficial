@@ -1,0 +1,4 @@
+node_modules/
+paoemcasa.db
+.env
+dist/
